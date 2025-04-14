@@ -31,10 +31,10 @@ const MapScreen = () => {
       {markers.map((marker, index) => (
         <Marker
           key={index}
-          title={marker.name}
+          title={marker.title}
           coordinate={{
-            latitude: marker.latitude,
-            longitude: marker.longitude
+            latitude: marker.ride_location.lat,
+            longitude: marker.ride_location.lng
           }}
           onPress={() => onMarkerSelected(marker)}
         >
