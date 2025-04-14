@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Alert, Text, View } from 'react-native';
 import MapView, { Marker, Callout, Region } from 'react-native-maps';
 import { markers, MarkerType } from '../markers';
 
-
 const INITIAL_REGION: Region = {
-  latitude: 51.5072,
-  longitude: -0.1276,
+  latitude: 54.6582,
+  longitude: -1.8608,
   latitudeDelta: 0.01,
   longitudeDelta: 0.01
 };
 
 const MapScreen = () => {
+  const [selectedMarker, setSelectedMarker] = useState<MarkerType | null>(null)
+  
+  // console.log(selectedMarker)
+
   const onMarkerSelected = (marker: MarkerType) => {
-    Alert.alert(marker.name);
+    setSelectedMarker(marker);
   };
 
-  const calloutPressed = () => {
-    Alert.alert('Callout pressed');
-  };
+  // const calloutPressed = () => {
+  //   Alert.alert('Callout pressed');
+  // };
 
   return (
     <MapView
@@ -35,11 +38,11 @@ const MapScreen = () => {
           }}
           onPress={() => onMarkerSelected(marker)}
         >
-          <Callout onPress={calloutPressed}>
-            <View style={{ padding: 10 }}>
-              <Text style={{ fontSize: 18 }}>{marker.name}</Text>
+          {/* <Callout onPress={calloutPressed}>
+            <View>
+              <Text>{marker.name}</Text>
             </View>
-          </Callout>
+          </Callout> */}
         </Marker>
       ))}
     </MapView>
